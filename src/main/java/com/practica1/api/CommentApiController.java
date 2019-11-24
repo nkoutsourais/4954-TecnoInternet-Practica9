@@ -24,15 +24,15 @@ public class CommentApiController {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Long newComment(@PathVariable long postId, @RequestBody Comment comment) {
-        return blogService.AddComment(postId, comment);
+        return blogService.addComment(postId, comment);
     }
 
     @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Comment> newPost(@PathVariable long postId, @PathVariable long commentId) {
+    public ResponseEntity<Comment> delComment(@PathVariable long postId, @PathVariable long commentId) {
         Comment comment = blogService.removeComment(postId, commentId);
         if(comment == null)
-            return (ResponseEntity<Comment>) ResponseEntity.notFound();
+            return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(comment);
     }
 }

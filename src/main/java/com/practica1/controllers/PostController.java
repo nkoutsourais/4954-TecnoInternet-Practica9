@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import com.practica1.services.BlogService;
 import com.practica1.models.Post;
-import com.practica1.models.Usuario;
+import com.practica1.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,30 +19,30 @@ public class PostController {
   @Autowired
   BlogService blogService;
   @Autowired
-  Usuario usuario;
+  User user;
 
   @GetMapping("/")
-  public String tablon(Model model, HttpSession session) {
+  public String getBlog(Model model, HttpSession session) {
     model.addAttribute("posts", blogService.getPosts());
     return "blog";
   }
 
   @PostMapping("/post/save")
-  public String nuevoPost(Model model, Post post) {
-    blogService.AddPost(post);
+  public String newPost(Model model, Post post) {
+    blogService.addPost(post);
     return "post_guardado";
   }
 
   @GetMapping("/post/new")
-  public String nuevoPostForm(Model model) {
+  public String getFormNewPost(Model model) {
     return "nuevo_post";
   }
 
   @GetMapping("/post/{postId}")
-  public String nuevoAnuncio(Model model, @PathVariable long postId) {
+  public String getPost(Model model, @PathVariable long postId) {
     Post post = blogService.getPost(postId);
     model.addAttribute("post", post);
-    model.addAttribute("usuario", usuario.getNombre());
+    model.addAttribute("usuario", user.getUserName());
     return "ver_post";
   }
 }

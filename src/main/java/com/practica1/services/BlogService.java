@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 public class BlogService {
 
     private static Map<Long, Post> posts = new HashMap<>();
-    private final AtomicLong lastId = new AtomicLong();
+    private final AtomicLong lastId;
 
-    long createNewId() {
-        return lastId.incrementAndGet();
+    public BlogService() {
+        this.lastId = new AtomicLong();
     }
 
     public Set<Entry<Long, Post>> getPosts() {
@@ -29,17 +29,17 @@ public class BlogService {
         return posts.get(postId);
     }
 
-    public long AddPost(Post post) {
+    public long addPost(Post post) {
         assert post != null;
-        long id = createNewId();
+        long id = lastId.incrementAndGet();
         posts.put(id, post);
         return id;
     }
 
-    public long AddComment(long postId, Comment comment) {
+    public long addComment(long postId, Comment comment) {
         Post post = getPost(postId);
         if(post != null) {
-            return post.AddComment(comment);
+            return post.addComment(comment);
         }
         return -1;
     }

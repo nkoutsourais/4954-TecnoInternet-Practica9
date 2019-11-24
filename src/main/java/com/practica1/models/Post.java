@@ -21,21 +21,17 @@ public class Post {
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
-        comments = new HashMap<>();
-        lastId = new AtomicLong();
-    }
-
-    long createNewId() {
-        return lastId.incrementAndGet();
+        this.comments = new HashMap<>();
+        this.lastId = new AtomicLong();
     }
 
     public Set<Entry<Long, Comment>> getComments() {
         return comments.entrySet();
     }
 
-    public long AddComment(Comment comment) {
+    public long addComment(Comment comment) {
         assert comment != null;
-        long commentId = createNewId();
+        long commentId = lastId.incrementAndGet();
         this.comments.put(commentId, comment);
         return commentId;
     }

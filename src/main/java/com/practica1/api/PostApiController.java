@@ -27,7 +27,7 @@ public class PostApiController {
 
     @JsonView(Post.Basic.class)
     @GetMapping("/")
-    public Set<Entry<Long, Post>> getAll() {
+    public Set<Entry<Long, Post>> getBlog() {
         return blogService.getPosts();
     }
 
@@ -35,13 +35,13 @@ public class PostApiController {
     public ResponseEntity<Post> getPost(@PathVariable long postId) {
         Post post = blogService.getPost(postId);
         if(post == null)
-            return (ResponseEntity<Post>) ResponseEntity.notFound();
+            return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(post);
     }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Long newPost(@RequestBody Post post) {
-        return blogService.AddPost(post);
+        return blogService.addPost(post);
     }
 }
