@@ -1,0 +1,36 @@
+<html>
+<body>
+	<fieldset style="width: 30%">
+		<legend>{{post.title}}</legend>
+		<p>Contenido: {{post.content}}</p>
+		<p><b>Comentarios:</b></p>
+		<table style="width: 100%;">
+		{{#comments}}
+			<tr>
+				<td style="width:80%">{{key}}.- {{value.userName}}</td>
+				<td>
+					<a href="/post/{{postId}}/comment/delete/{{key}}">Borrar</a>
+				</td>
+			</tr>
+			<tr><td colspan="2">{{value.comment}}</td></tr>
+		{{/comments}}
+		{{^comments}}
+			<tr><td colspan="2"><i>Sin comentarios</i></td></tr>
+		{{/comments}}
+		</table>
+	</fieldset>
+	<fieldset style="width: 30%">
+		<legend><b>Nuevo Comentario</b></legend>
+		<form action="/post/{{postId}}/comment/save" method="post">
+			<p>Usuario: </p>
+			<input type='text' name='userName' value='{{usuario}}' >
+			<p>Comentario:</p>
+			<textarea name='comment' rows=5 cols=40></textarea>
+			</br>
+			<input type='submit' value='Enviar'>
+		</form>
+	</fieldset>
+	
+	<a href="/">Volver al tablón</a>
+</body>
+</html>

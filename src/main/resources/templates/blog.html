@@ -1,0 +1,16 @@
+<html>
+<body>
+	<h1>Blog</h1>
+	<table style="width: 20%;">
+	{{#posts}}
+	<tr style="height: 30px;">
+		<td>{{key}}.- <b>{{value.title}}</b></td>
+		<td><a href="post/{{key}}">Ver</a></td>
+	</tr>
+	{{/posts}}
+	</table>
+	
+	<br>
+	<a href="/post/new">Nuevo post</a>
+</body>
+</html>
