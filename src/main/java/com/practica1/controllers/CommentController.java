@@ -22,9 +22,9 @@ public class CommentController {
 
     @PostMapping("/post/{postId}/comment/save")
     public String newComment(Model model, @PathVariable long postId, Comment comment) {
-        blogService.AddComment(postId, comment);
         if("".equals(usuario.getNombre()))
             usuario.setNombre(comment.getUserName());
+        blogService.AddComment(postId, comment);
         return addAttributes(model, postId);
     }
 
@@ -38,7 +38,6 @@ public class CommentController {
         Post post = blogService.getPost(postId);
         model.addAttribute("post", post);
         model.addAttribute("usuario", usuario.getNombre());
-        model.addAttribute("comments", post.getComments());
         return "ver_post";
     }
 }

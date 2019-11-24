@@ -43,7 +43,6 @@ public class PostController {
     Post post = blogService.getPost(postId);
     model.addAttribute("post", post);
     model.addAttribute("usuario", usuario.getNombre());
-    model.addAttribute("comments", post.getComments());
     return "ver_post";
   }
 }

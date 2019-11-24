@@ -5,7 +5,7 @@
 		<p>Contenido: {{post.content}}</p>
 		<p><b>Comentarios:</b></p>
 		<table style="width: 100%;">
-		{{#comments}}
+		{{#post.comments}}
 			<tr>
 				<td style="width:80%">{{key}}.- {{value.userName}}</td>
 				<td>
@@ -13,10 +13,10 @@
 				</td>
 			</tr>
 			<tr><td colspan="2">{{value.comment}}</td></tr>
-		{{/comments}}
-		{{^comments}}
+		{{/post.comments}}
+		{{^post.comments}}
 			<tr><td colspan="2"><i>Sin comentarios</i></td></tr>
-		{{/comments}}
+		{{/post.comments}}
 		</table>
 	</fieldset>
 	<fieldset style="width: 30%">

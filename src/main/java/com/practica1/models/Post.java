@@ -6,8 +6,13 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class Post {
 
+    public interface Basic {}
+
+    @JsonView(Basic.class)
     private final String title;
     private final String content;
     private final Map<Long, Comment> comments;

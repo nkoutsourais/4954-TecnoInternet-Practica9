@@ -37,10 +37,17 @@ public class BlogService {
     }
 
     public long AddComment(long postId, Comment comment) {
-        return posts.get(postId).AddComment(comment);
+        Post post = getPost(postId);
+        if(post != null) {
+            return post.AddComment(comment);
+        }
+        return -1;
     }
 
     public Comment removeComment(long postId, long commentId) {
-        return posts.get(postId).removeComment(commentId);
+        Post post = getPost(postId);
+        if(post != null)
+            return post.removeComment(commentId);
+        return null;
     }
 }
