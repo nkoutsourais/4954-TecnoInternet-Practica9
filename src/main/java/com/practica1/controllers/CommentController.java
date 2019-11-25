@@ -28,7 +28,7 @@ public class CommentController {
         return addAttributes(model, postId);
     }
 
-    @GetMapping("/post/{postId}/comment/delete/{commentId}")
+    @GetMapping("/post/{postId}/comment/{commentId}/delete")
     public String delComment(Model model, @PathVariable long postId, @PathVariable long commentId) {
         blogService.removeComment(postId, commentId);
         return addAttributes(model, postId);
